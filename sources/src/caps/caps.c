@@ -74,13 +74,12 @@ static int load_capslib (void)
 
 #ifdef __LIBRETRO__
     #ifdef __ANDROID__
-    	snprintf(CAPSLIB_PATH, RETRO_PATH_MAX, "%s%c%s", "/data/user/0/com.retroarch/cores", DIR_SEP_CHR, CAPSLIB_NAME);
-	#else
-    	snprintf(CAPSLIB_PATH, RETRO_PATH_MAX, "%s%c%s", retro_system_directory, DIR_SEP_CHR, CAPSLIB_NAME);
-	#endif
-	if (!path_is_valid(CAPSLIB_PATH)) {
-	    snprintf(CAPSLIB_PATH, RETRO_PATH_MAX, "%s", CAPSLIB_NAME);
-	}
+        snprintf(CAPSLIB_PATH, RETRO_PATH_MAX, "%s%c%s", "/data/user/0/com.retroarch/cores", DIR_SEP_CHR, CAPSLIB_NAME);
+    #else
+        snprintf(CAPSLIB_PATH, RETRO_PATH_MAX, "%s%c%s", retro_system_directory, DIR_SEP_CHR, CAPSLIB_NAME);
+    #endif
+    if (!path_is_valid(CAPSLIB_PATH))
+	snprintf(CAPSLIB_PATH, RETRO_PATH_MAX, "%s", CAPSLIB_NAME);
     if (!path_is_valid(CAPSLIB_PATH))
     {
         snprintf(retro_message_msg, sizeof(retro_message_msg), "CAPS library '%s' not found!", CAPSLIB_NAME);
